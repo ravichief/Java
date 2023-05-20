@@ -14,7 +14,9 @@ class Guess_The_Number
     public static void main(String args[])
     {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Hello\nWelcome to the number guessing game\nYou have to guess a number between 1 to 100");
+        System.out.println("Enter limit of guessing : ");
+        int w=sc.nextInt();
+        System.out.println("Hello\nWelcome to the number guessing game\nYou have to guess a number between 1 to "+w);
         System.out.print("Enter \nstart : start the game \nend : end the game\nhere : ");
         String t = sc.next();
         while (t.equals("start") || t.equals("again")) {
@@ -25,7 +27,7 @@ class Guess_The_Number
             System.out.print("\nEnter 1 to start guessing : ");
             int u = sc.nextInt();
             if (u == 1) {
-                int x = (int) (Math.random() * 100) + 1;
+                int x = (int) (Math.random() * w) + 1;
                 int y = 0;
                 int j = 1;
                 int p;
@@ -34,14 +36,20 @@ class Guess_The_Number
                     p = sc.nextInt();
                     if (p == x) {
                         System.out.println("You guessed the number : " + x + "\nin attempt number : " + j);
+                        if(j==1)
+                        System.out.println("Your score is : "+(float)(100)+" percent");
+                        else if(j==(e-1))
+                        System.out.println("Your somehow guessed it in the last attempt");
+                        else
                         System.out.println("Your score is : "+(float)(100-(n*j))+" percent");
                         y = 1;
                         h--;
                     } else {
                         j++;
                         if (h == 1) {
-                            System.out
-                                    .println("\nYou couldn't guess the number\nin " + e + " attempts.\nIt was : " + x);
+                            System.out.println("\nYou couldn't guess the number\nin " + e + " attempts.\nIt was : " + x);
+                            t = "end";
+                            y=1;
                         } else {
                             if (p > x)
                                 System.out.println("Guess Lower");
